@@ -1,6 +1,7 @@
 import tarfile
 import os
 import sys
+from pydub import AudioSegment
 
 def extract(fname):
     if (fname.endswith("tar.gz")):
@@ -30,8 +31,8 @@ if __name__ == '__main__':
         genre_dirs = [os.path.join(os.path.join(os.getcwd(), filename.split(".")[0], g)) for g in genres]
         # print(genre_dirs)
         for genre in genre_dirs:
-            # print(os.path.normpath(genre))
+            print(os.path.normpath(genre))
             for file in os.listdir(os.path.normpath(genre)):
                 # print(file)
-                # print(os.path.exists(os.path.join(os.path.normpath(genre), file)))
-                
+                # print(file, ": ", os.path.exists(os.path.join(os.path.normpath(genre), file)))
+                os.system("sox " + str(file) + " " + str(file[:-3]) + ".wav")
